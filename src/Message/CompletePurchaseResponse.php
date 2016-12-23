@@ -3,6 +3,7 @@
 namespace Omnipay\WechatPay\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
+use Omnipay\WechatPay\Helper;
 
 /**
  * Class CompletePurchaseResponse
@@ -44,4 +45,26 @@ class CompletePurchaseResponse extends AbstractResponse
     {
         return $this->request->getData();
     }
+
+    public function successResponse()
+    {
+        $successResponse = array(
+            'return_code' => 'SUCCESS',
+            'return_msg' => 'OK',
+            );
+
+        return Helper::array2xml($successResponse);
+
+    }
+
+    public function failedResponse()
+    {
+        $failedResponse = array(
+            'return_code' => 'FAIL',
+            'return_msg' => 'Failed to handle notification.',
+            );
+
+        return Helper::array2xml($failedResponse);
+    }
+
 }
