@@ -27,7 +27,7 @@ class CreateOrderResponse extends BaseAbstractResponse
                 'prepayid'  => $this->getPrepayId(),
                 'package'   => 'Sign=WXPay',
                 'noncestr'  => md5(uniqid()),
-                'timestamp' => time(),
+                'timestamp' => (string)time(),
             );
 
             $data['sign'] = Helper::sign($data, $this->request->getApiKey());
@@ -58,7 +58,7 @@ class CreateOrderResponse extends BaseAbstractResponse
                 'appId'     => $this->request->getAppId(),
                 'package'   => 'prepay_id=' . $this->getPrepayId(),
                 'nonceStr'  => md5(uniqid()),
-                'timeStamp' => time(),
+                'timeStamp' => (string)time(),
             );
 
             $data['signType'] = 'MD5';
